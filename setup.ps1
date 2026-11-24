@@ -1,6 +1,6 @@
 # Fortis Desktop setup script (Windows)
 # Usage:  right-click -> Run with PowerShell, or:  powershell -ExecutionPolicy Bypass -File setup.ps1
-$ErrorActionPreference = "Stop"
+$ErrorActionPreference = "Continue"
 
 function Invoke-Native {
     param([scriptblock]$Command)
