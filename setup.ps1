@@ -79,7 +79,7 @@ if ($LASTEXITCODE -ne 0) {
 
     if ($hasNvidia) {
         Write-Host "       NVIDIA GPU detected - trying the CUDA wheel first..."
-        & $venvPy -m pip install --disable-pip-version-check --quiet --only-binary :all: llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cu124
+        & $venvPy -m pip install --disable-pip-version-check --quiet --only-binary :all: llama-cpp-python==0.3.19 --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cu124
         if ((Test-LlamaImport)) { $ok = $true }
         if ($ok) {
             New-Item -ItemType File -Path $marker -Force | Out-Null
@@ -92,7 +92,7 @@ if ($LASTEXITCODE -ne 0) {
     }
     if (-not $ok) {
         Write-Host "       Trying the prebuilt CPU wheel (llama.cpp CPU index)..."
-        & $venvPy -m pip install --disable-pip-version-check --quiet --only-binary :all: llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu
+        & $venvPy -m pip install --disable-pip-version-check --quiet --only-binary :all: llama-cpp-python==0.3.19 --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu
         if ((Test-LlamaImport)) { $ok = $true }
         if ($ok) {
             Write-Host "  [ok] Engine installed (CPU)"
@@ -114,7 +114,7 @@ if ($LASTEXITCODE -ne 0) {
         } catch {}
         if ($hasMsvc) {
             Write-Host "       No prebuilt wheel - compiling from source with the detected MSVC toolchain (needs CMake+nmake)..."
-            & $venvPy -m pip install --disable-pip-version-check --quiet llama-cpp-python
+            & $venvPy -m pip install --disable-pip-version-check --quiet llama-cpp-python ==0.3.19
             if ((Test-LlamaImport)) { $ok = $true }
         }
         if ($ok) {
