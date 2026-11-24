@@ -3,7 +3,7 @@ uvicorn[standard]
 python-multipart
 pydantic
 
-chromadb
+chromadb>=1.0 #Enforce version
 sentence-transformers
 rank-bm25
 
